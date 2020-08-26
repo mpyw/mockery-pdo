@@ -85,6 +85,36 @@ class Test extends TestCase
         $this->assertFalse($stmt->fetch());
     }
 
+    public function testSelectSetFetchModeInAdvance(): void
+    {
+        $pdo = (new MockeryPDO())->mock();
+
+        $stmt = $pdo->shouldPrepare('select * from users where email = :email and active = :active');
+        $stmt->shouldReceive('setFetchMode')
+            ->with(PDO::FETCH_OBJ)
+            ->once();
+        $stmt->shouldBind()
+                ->value('email', 'John')
+                ->boolValue('active', true)
+            ->shouldExecute()
+            ->shouldFetchAllReturns([(object)['id' => 1, 'name' => 'John', 'active' => 1]]);
+
+        $this->assertInstanceOf(
+            PDOStatement::class,
+            $stmt = $pdo->prepare('select * from users where email = :email and active = :active')
+        );
+
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        $this->assertTrue($stmt->bindValue('email', 'John'));
+        $this->assertTrue($stmt->bindValue('active', 'John', PDO::PARAM_BOOL));
+        $this->assertTrue($stmt->execute());
+
+        $this->assertEquals(
+            [(object)['id' => 1, 'name' => 'John', 'active' => 1]],
+            $stmt->fetchAll()
+        );
+    }
+
     public function testInsert(): void
     {
         $pdo = (new MockeryPDO())->mock();

@@ -3,12 +3,21 @@
 namespace Mpyw\MockeryPDO\Expectations;
 
 use Mockery\ExpectationInterface;
+use Mockery\MockInterface;
 use Mpyw\MockeryPDO\Concerns\DelegatesToExpectation;
+use Mpyw\MockeryPDO\Concerns\DelegatesToPDOStatement;
 use Mpyw\MockeryPDO\States\BindingState;
+use PDOStatement;
 
-class PrepareExpectationProxy
+/**
+ * Class PrepareExpectationProxy
+ *
+ * @mixin \Mockery\Mock|\PDOStatement
+ */
+class PrepareExpectationProxy extends PDOStatement
 {
-    use DelegatesToExpectation;
+    use DelegatesToExpectation,
+        DelegatesToPDOStatement;
 
     /**
      * @var \Mockery\Expectation|\Mockery\ExpectationInterface
@@ -37,6 +46,16 @@ class PrepareExpectationProxy
         $this->expectation = $expectation;
         $this->statement = $statement;
         $this->sql = $sql;
+    }
+
+    /**
+     * @param  string $name
+     * @param  array  $args
+     * @return mixed
+     */
+    public function __call(string $name, array $args)
+    {
+        return $this->getPDOStatementMock()->$name(...$args);
     }
 
     /**
@@ -79,5 +98,13 @@ class PrepareExpectationProxy
     public function getExpectation(): ExpectationInterface
     {
         return $this->expectation;
+    }
+
+    /**
+     * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PDOStatement
+     */
+    public function getPDOStatementMock(): MockInterface
+    {
+        return $this->statement;
     }
 }

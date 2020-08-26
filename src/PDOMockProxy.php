@@ -8,6 +8,11 @@ use Mpyw\MockeryPDO\Concerns\DelegatesToPDOMock;
 use Mpyw\MockeryPDO\Expectations\PrepareExpectationProxy;
 use PDO;
 
+/**
+ * Class PDOMockProxy
+ *
+ * @mixin \Mockery\Mock|\PDO
+ */
 class PDOMockProxy extends PDO
 {
     use DelegatesToPDOMock;
@@ -76,7 +81,7 @@ class PDOMockProxy extends PDO
     /**
      * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PDO
      */
-    protected function getPDOMock(): MockInterface
+    public function getPDOMock(): MockInterface
     {
         return $this->pdo;
     }
