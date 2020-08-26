@@ -3,6 +3,7 @@
 namespace Mpyw\MockeryPDO\Expectations;
 
 use Mockery\ExpectationInterface;
+use Mockery\MockInterface;
 use Mpyw\MockeryPDO\Concerns\DelegatesToExpectation;
 use Mpyw\MockeryPDO\States\FetchingState;
 
@@ -50,13 +51,28 @@ class ExecuteExpectationProxy
     }
 
     /**
-     * @param int $rowCount
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
      */
-    public function shouldRowCountReturns(int $rowCount): void
+    public function shouldCallRowCount(): ExpectationInterface
     {
-        $this->statement
-            ->shouldReceive('rowCount')
-            ->andReturn($rowCount);
+        return $this->statement->shouldReceive('rowCount');
+    }
+
+    /**
+     * @param  int                                                $rowCount
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
+     */
+    public function shouldRowCountReturns(int $rowCount): ExpectationInterface
+    {
+        return $this->shouldCallRowCount()->andReturn($rowCount);
+    }
+
+    /**
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
+     */
+    public function shouldCallFetchAll(): ExpectationInterface
+    {
+        return $this->statement->shouldReceive('fetchAll');
     }
 
     /**
@@ -65,9 +81,7 @@ class ExecuteExpectationProxy
      */
     public function shouldFetchAllReturns(array $results): ExpectationInterface
     {
-        return $this->statement
-            ->shouldReceive('fetchAll')
-            ->andReturn($results);
+        return $this->shouldCallFetchAll()->andReturn($results);
     }
 
     /**
@@ -84,5 +98,13 @@ class ExecuteExpectationProxy
     public function getExpectation(): ExpectationInterface
     {
         return $this->expectation;
+    }
+
+    /**
+     * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PDOStatement
+     */
+    public function thenStatement(): MockInterface
+    {
+        return $this->statement;
     }
 }
