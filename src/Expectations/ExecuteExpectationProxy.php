@@ -51,28 +51,12 @@ class ExecuteExpectationProxy
     }
 
     /**
-     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
-     */
-    public function shouldCallRowCount(): ExpectationInterface
-    {
-        return $this->statement->shouldReceive('rowCount');
-    }
-
-    /**
      * @param  int                                                $rowCount
      * @return \Mockery\Expectation|\Mockery\ExpectationInterface
      */
     public function shouldRowCountReturns(int $rowCount): ExpectationInterface
     {
-        return $this->shouldCallRowCount()->andReturn($rowCount);
-    }
-
-    /**
-     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
-     */
-    public function shouldCallFetchAll(): ExpectationInterface
-    {
-        return $this->statement->shouldReceive('fetchAll');
+        return $this->whenRowCountCalled()->andReturn($rowCount);
     }
 
     /**
@@ -81,7 +65,32 @@ class ExecuteExpectationProxy
      */
     public function shouldFetchAllReturns(array $results): ExpectationInterface
     {
-        return $this->shouldCallFetchAll()->andReturn($results);
+        return $this->whenFetchAllCalled()->andReturn($results);
+    }
+
+    /**
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
+     */
+    public function whenRowCountCalled(): ExpectationInterface
+    {
+        return $this->whenCalled('rowCount');
+    }
+
+    /**
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
+     */
+    public function whenFetchAllCalled(): ExpectationInterface
+    {
+        return $this->whenCalled('fetchAll');
+    }
+
+    /**
+     * @param  string                                             $method
+     * @return \Mockery\Expectation|\Mockery\ExpectationInterface
+     */
+    public function whenCalled(string $method): ExpectationInterface
+    {
+        return $this->statement->shouldReceive($method);
     }
 
     /**
