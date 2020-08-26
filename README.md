@@ -22,7 +22,7 @@ composer require mpyw/mockery-pdo
 #### Basic
 
 ```php
-$pdo = (new MockeryPdo())->mock();
+$pdo = (new MockeryPDO())->mock();
 
 $pdo->shouldPrepare('select * from users where email = :email and active = :active')
     ->shouldBind()
@@ -49,7 +49,7 @@ $this->assertSame(
 #### Bind values on `execute()` call
 
 ```php
-$pdo = (new MockeryPdo())->mock();
+$pdo = (new MockeryPDO())->mock();
 
 $pdo->shouldPrepare('select * from users where email = ? and active = ?')
     ->shouldExecute(['John', '1'])
@@ -70,7 +70,7 @@ $this->assertSame(
 #### Progressively fetch rows
 
 ```php
-$pdo = (new MockeryPdo())->mock();
+$pdo = (new MockeryPDO())->mock();
 
 $pdo->shouldPrepare('select * from users where email = :email and active = :active')
     ->shouldBind()
@@ -100,7 +100,7 @@ $this->assertFalse($stmt->fetch());
 ### INSERT
 
 ```php
-$pdo = (new MockeryPdo())->mock();
+$pdo = (new MockeryPDO())->mock();
 
 $pdo->shouldPrepare('insert into users(email, active) values (?, ?)')
     ->shouldExecute(['John', '1'])

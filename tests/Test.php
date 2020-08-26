@@ -12,7 +12,7 @@ class Test extends TestCase
 {
     public function testSelectBasic(): void
     {
-        $pdo = (new MockeryPdo())->mock();
+        $pdo = (new MockeryPDO())->mock();
 
         $pdo->shouldPrepare('select * from users where email = :email and active = :active')
             ->shouldBind()
@@ -38,7 +38,7 @@ class Test extends TestCase
 
     public function testSelectBindOnExecute(): void
     {
-        $pdo = (new MockeryPdo())->mock();
+        $pdo = (new MockeryPDO())->mock();
 
         $pdo->shouldPrepare('select * from users where email = ? and active = ?')
             ->shouldExecute(['John', '1'])
@@ -58,7 +58,7 @@ class Test extends TestCase
 
     public function testSelectFetchRepeated(): void
     {
-        $pdo = (new MockeryPdo())->mock();
+        $pdo = (new MockeryPDO())->mock();
 
         $pdo->shouldPrepare('select * from users where email = :email and active = :active')
             ->shouldBind()
@@ -87,7 +87,7 @@ class Test extends TestCase
 
     public function testInsert(): void
     {
-        $pdo = (new MockeryPdo())->mock();
+        $pdo = (new MockeryPDO())->mock();
 
         $pdo->shouldPrepare('insert into users(email, active) values (?, ?)')
             ->shouldExecute(['John', '1'])
