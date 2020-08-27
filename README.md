@@ -1,8 +1,6 @@
 # Mockery PDO [![Build Status](https://travis-ci.com/mpyw/mockery-pdo.svg?branch=master)](https://travis-ci.com/mpyw/mockery-pdo) [![Coverage Status](https://coveralls.io/repos/github/mpyw/mockery-pdo/badge.svg?branch=master)](https://coveralls.io/github/mpyw/mockery-pdo?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/?branch=master)
 
-【WIP】
-
-BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery/mockery)
+**[Experimental]** BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery/mockery)
 
 ## Requirements
 
@@ -12,7 +10,7 @@ BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery
 ## Installing
 
 ```bash
-composer require mpyw/mockery-pdo
+composer require mpyw/mockery-pdo:VERSION@alpha
 ```
 
 ## Example
