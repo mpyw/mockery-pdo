@@ -7,6 +7,8 @@ use PDO;
 
 trait DelegatesToPDOMock
 {
+    use DelegatesToPDOMockVersionsCompat;
+
     /**
      * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PDO
      */
@@ -73,19 +75,6 @@ trait DelegatesToPDOMock
     public function exec($statement)
     {
         return $this->getPDOMock()->exec($statement);
-    }
-
-    /**
-     * @param  string              $statement
-     * @param  int                 $mode
-     * @param  mixed               $fetchModeArgs
-     * @return false|\PDOStatement
-     */
-    public function query(string $statement, ?int $mode = PDO::ATTR_DEFAULT_FETCH_MODE, mixed ...$fetchModeArgs)
-    {
-        $arg3 = $fetchModeArgs[0] ?? null;
-        $ctorArgs = $fetchModeArgs[1] ?? [];
-        return $this->getPDOMock()->query($statement, $mode, $arg3, $ctorArgs);
     }
 
     /**
