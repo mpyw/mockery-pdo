@@ -28,7 +28,7 @@ jobs:
           coverage: xdebug
 
       - run: |
-          if php -r 'exit((int)!version_compare(PHP_VERSION "7.2", "<"));'; then
+          if php -r 'exit((int)!version_compare(PHP_VERSION, "7.2", "<"));'; then
             composer require "phpunit/phpunit:^7.0" "mockery/mockery:${{ matrix.mockery }}" --no-update
           elif php -r 'exit((int)!version_compare(PHP_VERSION, "7.3", "<"));'; then
             composer require "phpunit/phpunit:^8.0" "mockery/mockery:${{ matrix.mockery }}" --no-update
