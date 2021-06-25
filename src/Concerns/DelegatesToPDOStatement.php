@@ -88,14 +88,15 @@ trait DelegatesToPDOStatement
     }
 
     /**
-     * @param  null|int   $fetchStyle
-     * @param  mixed      $fetchArgument
-     * @param  null|array $ctorArgs
+     * @param  null|int $fetchStyle
+     * @param  mixed    $args
      * @return array
      */
-    public function fetchAll($fetchStyle = null, $fetchArgument = null, $ctorArgs = null)
+    public function fetchAll(int $fetchStyle = null, mixed ...$args)
     {
-        return $this->getPDOStatementMock()->fetchAll(...func_get_args());
+        $fetchArgument = $args[0] ?? null;
+        $ctorArgs = $args[1] ?? null;
+        return $this->getPDOStatementMock()->fetchAll($fetchStyle, $fetchArgument, $ctorArgs);
     }
 
     /**
@@ -161,14 +162,15 @@ trait DelegatesToPDOStatement
     }
 
     /**
-     * @param  int                $mode
-     * @param  null|object|string $classNameObject
-     * @param  array              $ctorArg
+     * @param  int   $mode
+     * @param  mixed $args
      * @return bool
      */
-    public function setFetchMode($mode, $classNameObject = null, array $ctorArg = [])
+    public function setFetchMode(int $mode, mixed ...$args)
     {
-        return $this->getPDOStatementMock()->setFetchMode(...func_get_args());
+        $classNameObject = $args[0] ?? null;
+        $ctorArg = $args[1] ?? [];
+        return $this->getPDOStatementMock()->setFetchMode($mode, $className, $ctorArg);
     }
 
     /**

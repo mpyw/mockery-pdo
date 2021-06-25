@@ -78,13 +78,14 @@ trait DelegatesToPDOMock
     /**
      * @param  string              $statement
      * @param  int                 $mode
-     * @param  mixed               $arg3
-     * @param  array               $ctorArgs
+     * @param  mixed               $fetchModeArgs
      * @return false|\PDOStatement
      */
-    public function query($statement, $mode = PDO::ATTR_DEFAULT_FETCH_MODE, $arg3 = null, array $ctorArgs = [])
+    public function query(string $statement, ?int $mode = PDO::ATTR_DEFAULT_FETCH_MODE, mixed ...$fetchModeArgs)
     {
-        return $this->getPDOMock()->query(...func_get_args());
+        $arg3 = $fetchModeArgs[0] ?? null;
+        $ctorArgs = $fetchModeArgs[1] ?? [];
+        return $this->getPDOMock()->query($statement, $mode, $arg3, $ctorArgs);
     }
 
     /**
