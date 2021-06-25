@@ -1,4 +1,4 @@
-# Mockery PDO [![Build Status](https://travis-ci.com/mpyw/mockery-pdo.svg?branch=master)](https://travis-ci.com/mpyw/mockery-pdo) [![Coverage Status](https://coveralls.io/repos/github/mpyw/mockery-pdo/badge.svg?branch=master)](https://coveralls.io/github/mpyw/mockery-pdo?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/?branch=master)
+# Mockery PDO [![Build Status](https://github.com/mpyw/mockery-pdo/actions/workflows/ci.yml/badge.svg?branch=master)] [![Coverage Status](https://coveralls.io/repos/github/mpyw/mockery-pdo/badge.svg?branch=master)](https://coveralls.io/github/mpyw/mockery-pdo?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/?branch=master)
 
 **[Experimental]** BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery/mockery)
 
