@@ -7,6 +7,8 @@ use PDO;
 
 trait DelegatesToPDOStatement
 {
+    use DelegatesToPDOStatementVersionsCompat;
+
     /**
      * @return \Mockery\LegacyMockInterface|\Mockery\MockInterface|\PDOStatement
      */
@@ -88,17 +90,6 @@ trait DelegatesToPDOStatement
     }
 
     /**
-     * @param  null|int   $fetchStyle
-     * @param  mixed      $fetchArgument
-     * @param  null|array $ctorArgs
-     * @return array
-     */
-    public function fetchAll($fetchStyle = null, $fetchArgument = null, $ctorArgs = null)
-    {
-        return $this->getPDOStatementMock()->fetchAll(...func_get_args());
-    }
-
-    /**
      * @param  string     $className
      * @param  null|array $ctorArgs
      * @return mixed
@@ -158,17 +149,6 @@ trait DelegatesToPDOStatement
     public function getColumnMeta($column)
     {
         return $this->getPDOStatementMock()->getColumnMeta($column);
-    }
-
-    /**
-     * @param  int                $mode
-     * @param  null|object|string $classNameObject
-     * @param  array              $ctorArg
-     * @return bool
-     */
-    public function setFetchMode($mode, $classNameObject = null, array $ctorArg = [])
-    {
-        return $this->getPDOStatementMock()->setFetchMode(...func_get_args());
     }
 
     /**
