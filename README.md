@@ -4,8 +4,8 @@
 
 ## Requirements
 
-- PHP: `^7.1 || ^8.0`
-- Mockery: `^1.0`
+- PHP: `^7.3 || ^8.0`
+- Mockery: `^1.3.3 || ^1.4.2`
 
 ## Installing
 
