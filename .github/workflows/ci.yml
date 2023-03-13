@@ -26,6 +26,7 @@ jobs:
           composer require "mockery/mockery:${{ matrix.mockery }}" ${{ matrix.lib.flags }}
 
       - run: mkdir -p build/logs
+      - run: 'vendor/bin/phpunit --migrate-configuration || :'
       - run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
       - name: Upload Coverage
