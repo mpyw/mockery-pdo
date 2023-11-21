@@ -1,6 +1,9 @@
 # Mockery PDO [![Build Status](https://github.com/mpyw/mockery-pdo/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/mpyw/mockery-pdo/actions) [![Coverage Status](https://coveralls.io/repos/github/mpyw/mockery-pdo/badge.svg?branch=master)](https://coveralls.io/github/mpyw/mockery-pdo?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mpyw/mockery-pdo/?branch=master)
 
-**[Experimental]** BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery/mockery)
+> [!WARNING]
+> **Experimental**
+
+BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery/mockery)
 
 ## Requirements
 
