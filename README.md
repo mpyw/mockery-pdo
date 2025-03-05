@@ -7,8 +7,11 @@ BDD-style PDO Mocking Library for [`mockery/mockery`](https://github.com/mockery
 
 ## Requirements
 
-- PHP: `^7.3 || ^8.0`
-- Mockery: `^1.3.3 || ^1.4.2`
+- PHP: `^8.2`
+- Mockery: `^1.6.12`
+
+> [!NOTE]
+> Older versions have outdated dependency requirements. If you cannot prepare the latest environment, please refer to past releases.
 
 ## Installing
 
